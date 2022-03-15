@@ -1,0 +1,17 @@
+{
+  "name": "lambda_route53_upsert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "sls deploy --force",
+    "info": "sls info"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "serverless": "^2.72.3",
+    "serverless-python-requirements": "^5.3.1",
+    "serverless-wsgi": "^3.0.0"
+  }
+}
