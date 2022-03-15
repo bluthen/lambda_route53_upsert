@@ -1,4 +1,10 @@
 {
-  "change to your domain record name": "Change this to a random password",
-  "hosted_zone_id": "put your hosted zone for the domain here"
+  "set to domain record (example.com)": {
+    "password": "Change this to a random password",
+    "hosted_zone_id": "Set this to the domains hosted zone id"
+  },
+  "other domain record (example2.com)": {
+    "password": "Change this to a unique random password",
+    "hosted_zone_id": "Set this to the domains hosted zone id"
+  }
 }

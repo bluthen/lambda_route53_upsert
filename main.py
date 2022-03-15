@@ -21,8 +21,13 @@ def root():
 def update_ddns():
     data = request.json
     ip = request.remote_addr
-    print(data, settings)
-    if data['password'] == settings[data['name']]:
+    for item in data.items():
+        domain = item[0]
+        password = item[1]
+        if password != settings[domain]['password']:
+            return 'Unauthorized', 401
+    for item in data.items():
+        domain = item[0]
         update = {
             "Comment": "Updated From DDNS Lambda",
             "Changes": [
@@ -34,15 +39,13 @@ def update_ddns():
                                 "Value": ip
                             }
                         ],
-                        "Name": data['name'],
+                        "Name": domain,
                         "Type": TYPE,
                         "TTL": TTL
                     }
                 }
             ]
         }
-        response = client.change_resource_record_sets(HostedZoneId=settings['hosted_zone_id'],
-                                                      ChangeBatch=update)
-        return response['ChangeInfo']['Status'], 200
-    else:
-        return 'Unauthorized', 401
+        client.change_resource_record_sets(HostedZoneId=settings[domain]['hosted_zone_id'],
+                                           ChangeBatch=update)
+    return 'Okay', 200
