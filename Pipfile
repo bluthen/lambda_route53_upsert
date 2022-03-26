@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 flask = "*"
 boto3 = "*"
+requests = "*"
 
 [dev-packages]
 

@@ -1,20 +1,21 @@
 # About
 
 Allows you to make a request to update a route 53 A record to the requesters IP address. Can be used as a dynamic dns 
-replacement.
+replacement. Also allows you to set TXT value, for example if using [letsencrypt](https://letsencrypt.org).
 
 # Deploy
  1. cp settings.default.json settings.json
  2. edit settings.json with your info.
- 3. npx sls deploy
- 4. ``` export LAMBDA_ENDPOINT=`npx sls info |grep ANY| head -n1 | awk '{print $3}'` ```
+ 3. npm ci
+ 4. npx sls deploy
+ 5. ``` export LAMBDA_ENDPOINT=`npx sls info |grep ANY| head -n1 | awk '{print $3}'` ```
 
 # Usage
 
 Make a post_payload.json file:
 
 ```
-{"your_domain_you_want_to_set": "password that matches in settings.json"}
+[{"domain": "some.domain.com", "password": "password that matches in settings.json", "type": "A|TXT", "value": "value if txt type"}, ...]
 ```
 Note: If you need multiple domains set you can add more domain/password pairs.
 
@@ -28,3 +29,9 @@ You can also just get your IP address:
 ```
 curl $LAMBDA_ENDPOINT
 ```
+
+## Unit test
+
+With a good post_payload.json made and $LAMBDA_ENDPOINT set correctly.
+
+```pipenv sync && pipenv run python main_test.py```
