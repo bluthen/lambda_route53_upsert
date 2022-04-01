@@ -8,6 +8,7 @@ import sys
 domain = os.environ.get('CERTBOT_DOMAIN')
 validation = os.environ.get('CERTBOT_VALIDATION')
 endpoint = os.environ.get('LAMBDA_ENDPOINT')
+# endpoint = your_endpoint_url
 
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'settings.json'), 'r') as f:
     settings = json.load(f)

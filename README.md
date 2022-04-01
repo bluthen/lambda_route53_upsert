@@ -60,7 +60,7 @@ After deploy with the following in your settings.json and creating a TXT record 
 ]
 ```
 
-You can then run the fllowing:
+You can then run the following:
 
 ```
 LAMBDA_ENDPOINT=yourendpoint certbot certonly --manual --manual-auth-hook /path/to/le_authenticator.py \
@@ -70,3 +70,5 @@ LAMBDA_ENDPOINT=yourendpoint certbot certonly --manual --manual-auth-hook /path/
 Make sure le_authenticator.py has a copy of settings.json where it is at with at least the _acme-challenge.yourdomain TXT record entry in it.
 
 certbot should set up an auto renew timer if it was successful.
+
+**Note:** You may want to set `endpoint` variable in le_authenticator.py instead of using environment variable if lets encrypt uses it automatically as a hook.
