@@ -79,7 +79,10 @@ def update_ddns():
         if rtype == 'A':
             value = ip
         else:
-            value = item['value']
+            # TODO: Better escaping:
+            # Characters 000 to 040 octal (0 to 32 decimal, 0x00 to 0x20 hexadecimal)
+            # Characters 177 to 377 octal (127 to 255 decimal, 0x7F to 0xFF hexadecimal)
+            value = '"'+item['value'].replace('"', '\\"')+'"'
         update = {
             "Comment": "Updated From DDNS Lambda",
             "Changes": [
